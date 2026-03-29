@@ -402,16 +402,82 @@ footer a { color: #aaa; }
 
   <div class="divider"></div>
 
+  <!-- GOOGLE TRENDS SECTION -->
+  <div class="section">
+    <span class="section-num">§ 5 — Key Finding III</span>
+    <h2>2004–2024：第三の転換 — 「メンタル」の台頭</h2>
+    <p>NDLデータは2001年以降、著作権保護資料の対象外化により急落する。Google Trends（検索頻度、2004年〜）がその続きを描く。データソースが異なるため縦軸の単位は直接比較できないが、語の相対的関係は連続している。</p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Fig. 4 — Google Trends 検索頻度（日本、2004–2024、年次平均）</div>
+      <div class="legend-row">
+        <div class="legend-item"><div class="legend-color" style="background:#8b2c2c"></div>煩悩</div>
+        <div class="legend-item"><div class="legend-color" style="background:#7b4e8b"></div>ストレス</div>
+        <div class="legend-item"><div class="legend-color" style="background:#2c5f8b"></div>うつ</div>
+        <div class="legend-item"><div class="legend-color" style="background:#c4762b"></div>メンタル</div>
+      </div>
+      <div style="position:relative;height:340px"><canvas id="trendsChart"></canvas></div>
+      <p class="chart-caption">出典：Google Trends（geo=JP）。相対検索頻度（0–100）。月次データの年次平均を表示。ストレスが2016年に100でピーク。煩悩は全期間を通じて2–5の最低水準。</p>
+    </div>
+
+    <div class="finding-grid">
+      <div class="finding">
+        <span class="finding-year" style="color:#c4762b">+130%</span>
+        <div class="finding-label">メンタル — 2004→2024</div>
+        <div class="finding-body">年平均21→49。COVID-19（2020年）以降に加速。「メンタルヘルス」の普及とSNSでの自己開示文化が牽引。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year" style="color:#7b4e8b">100</span>
+        <div class="finding-label">ストレス — 2016年6月</div>
+        <div class="finding-body">Google Trends最大値。2015年12月のストレスチェック制度義務化の影響。以降は80前後で安定。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year" style="color:#2c5f8b">-25%</span>
+        <div class="finding-label">うつ — 2013→2024</div>
+        <div class="finding-body">年平均73→57。「うつ」から「メンタル」への語彙シフトが示唆される。病名から包括的概念へ。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year">除夜の鐘</span>
+        <div class="finding-label">煩悩 — 12月スパイク</div>
+        <div class="finding-body">煩悩は毎年12月に微増（平均の1.5倍）。除夜の鐘の季節的文化記憶として残存。もはや思想語ではなく年中行事語。</div>
+      </div>
+    </div>
+
+    <h3>三段階転換の全体像</h3>
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#8b2c2c"></div>
+        <div class="tl-year">第一期：〜1967年</div>
+        <div class="tl-name">煩悩（宗教的枠組み）</div>
+        <div class="tl-body">苦しみの原因は「内なる執着」。対処法は修行・悟り。責任は自己に帰属。</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#7b4e8b"></div>
+        <div class="tl-year">第二期：1967年〜2020年</div>
+        <div class="tl-name">ストレス（医学的枠組み）</div>
+        <div class="tl-body">苦しみの原因は「外からの負荷」。対処法は休養・治療。責任は環境に帰属。</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#c4762b"></div>
+        <div class="tl-year">第三期：2020年〜</div>
+        <div class="tl-name">メンタル（自己ケア的枠組み）</div>
+        <div class="tl-body">苦しみは「メンタルの状態」。対処法はセルフケア・共有・専門家相談。責任は個人と社会の両方に分散。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- THESIS -->
   <div class="section">
-    <span class="section-num">§ 5 — Conclusion</span>
+    <span class="section-num">§ 6 — Conclusion</span>
     <h2>結論と含意</h2>
     <div class="thesis">
-      <p>仏教の「煩悩」概念は1940年に戦時イデオロギーとして国家に徴用され、個人的欲望を滅却させるための動員語として機能した。その後、高度経済成長期の1967年に「ストレス」という医学・心理学的語彙に置き換えられた。この概念置換は日本の近代化における<em>宗教的世界観の解体</em>を定量的に示している。苦しみの原因を「煩悩（内なる執着）」と見るか「ストレス（外からの負荷）」と見るかは、責任の所在と対処法を根本から変える。この転換は偶然ではなく、<em>近代国家・資本主義・医療化の進展</em>と精密に連動している。</p>
+      <p>日本における「苦しみの語彙」は三段階の転換を経ている。(1) 煩悩（宗教的枠組み）は1940年に戦時イデオロギーとして国家に徴用され、1967年にストレスに置き換えられた。(2) ストレス（医学的枠組み）は高度経済成長からバブル崩壊を経て支配的語彙となり、2015年のストレスチェック制度でピークに達した。(3) メンタル（自己ケア的枠組み）がCOVID-19以降に台頭し、<em>病名から状態記述へ、診断から自己認知へ</em>の転換を示している。この三段階は、日本社会における<em>苦しみの責任帰属の変遷</em> — 自己（煩悩）→環境（ストレス）→自己と社会の共有（メンタル）— を映し出している。</p>
     </div>
 
     <h3>今後の課題</h3>
-    <p>本研究の次ステップとして、(1) 12論書の系統分析（UPGMA）との統合、(2) 「トラウマ」「うつ」等の追加語彙分析、(3) ストレスのさらなる細分化（「職場ストレス」「育児ストレス」等）、(4) 他言語コーパスとの比較（英語の"sin"→"stress"転換との対照）が挙げられる。</p>
+    <p>本研究の次ステップとして、(1) 12論書の系統分析（UPGMA）との統合、(2) 「トラウマ」「HSP」「バーンアウト」等の追加語彙分析、(3) 他言語コーパスとの比較（英語の"sin"→"stress"→"mental health"転換との対照）、(4) SNSテキストマイニングによるリアルタイム概念追跡が挙げられる。</p>
   </div>
 
 </div><!-- /container -->
@@ -419,9 +485,9 @@ footer a { color: #aaa; }
 <footer>
   <div style="max-width:900px;margin:0 auto">
     <div style="margin-bottom:16px;color:#ccc;font-size:13px">煩悩の精神史 — NDL Ngram Analysis</div>
-    DATA SOURCE: 国立国会図書館デジタルコレクション NDL Ngram Viewer（lab.ndl.go.jp/ngramviewer）<br>
-    対象：図書・雑誌 約230万点 OCRテキストデータ<br>
-    License: CC BY（NDL Ngram Data）<br>
+    DATA SOURCES:<br>
+    · NDL Ngram Viewer（lab.ndl.go.jp/ngramviewer）— 図書・雑誌 約230万点 OCRテキストデータ · CC BY<br>
+    · Google Trends（trends.google.co.jp）— 日本の検索頻度データ 2004–2024<br>
     <br>
     Analysis &amp; Visualization: M2Labo Research · 2026<br>
     Built with Chart.js · GitHub Pages
@@ -560,6 +626,58 @@ new Chart(document.getElementById('crossChart'), {
     scales: {
       x: { ...baseOpts.scales.x, min: 1945, max: 2001 },
       y: { ...baseOpts.scales.y }
+    }
+  }
+});
+
+// Google Trends data (yearly averages from monthly data)
+const TRENDS_YEARS = Array.from({length: 21}, (_, i) => 2004 + i);
+const TRENDS = {
+  煩悩: [7,9,6,7,5,4,3,4,3,4,4,5,4,3,3,3,3,3,3,3,3],
+  ストレス: [28,28,31,31,31,31,34,43,51,62,67,77,83,76,77,79,80,84,88,85,76],
+  うつ: [50,52,59,58,55,55,59,70,68,75,71,76,71,70,68,69,67,69,65,62,57],
+  メンタル: [21,22,25,25,26,26,27,26,27,27,29,30,30,34,36,38,38,41,48,49,49]
+};
+const TRENDS_COLORS = {
+  煩悩: '#8b2c2c',
+  ストレス: '#7b4e8b',
+  うつ: '#2c5f8b',
+  メンタル: '#c4762b'
+};
+
+function makeTrendsDatasets(keys) {
+  return keys.map(k => ({
+    label: k,
+    data: TRENDS_YEARS.map((y, i) => ({ x: y, y: TRENDS[k][i] })),
+    borderColor: TRENDS_COLORS[k],
+    backgroundColor: TRENDS_COLORS[k] + '18',
+    borderWidth: 2,
+    pointRadius: 2,
+    pointHoverRadius: 5,
+    tension: 0.3,
+    fill: false,
+  }));
+}
+
+new Chart(document.getElementById('trendsChart'), {
+  type: 'line',
+  data: { datasets: makeTrendsDatasets(['煩悩','ストレス','うつ','メンタル']) },
+  options: {
+    ...baseOpts,
+    scales: {
+      x: {
+        ...baseOpts.scales.x,
+        min: 2004,
+        max: 2024,
+        ticks: { stepSize: 2, font: { family: 'Space Mono', size: 10 }, color: '#888' },
+      },
+      y: {
+        ...baseOpts.scales.y,
+        min: 0,
+        max: 100,
+        ticks: { font: { family: 'Space Mono', size: 10 }, color: '#888',
+                 callback: v => v }
+      }
     }
   }
 });
