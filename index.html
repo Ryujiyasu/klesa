@@ -157,7 +157,7 @@ p { margin-bottom: 16px; color: #333; font-size: 15px; line-height: 1.85; }
   line-height: 1.6;
   font-style: italic;
 }
-canvas { width: 100% !important; }
+
 
 /* FINDINGS */
 .finding-grid {
@@ -286,7 +286,7 @@ footer a { color: #aaa; }
         <div class="legend-item"><div class="legend-color" style="background:#2c6b3a"></div>義憤</div>
         <div class="legend-item"><div class="legend-color" style="background:#7b4e8b"></div>ストレス</div>
       </div>
-      <canvas id="mainChart" height="360"></canvas>
+      <div style="position:relative;height:340px"><canvas id="mainChart"></canvas></div>
       <p class="chart-caption">出典：国立国会図書館デジタルコレクション NDL Ngram Viewer。2001年以降は著作権保護資料が対象外となるため急落する。</p>
     </div>
   </div>
@@ -302,7 +302,7 @@ footer a { color: #aaa; }
 
     <div class="chart-wrap">
       <div class="chart-title">Fig. 2 — 戦時期詳細（1930–1955）</div>
-      <canvas id="warChart" height="280"></canvas>
+      <div style="position:relative;height:260px"><canvas id="warChart"></canvas></div>
       <p class="chart-caption">嫉妬（青）は1944〜45年に崩壊（3,337→446）。義憤（緑）は戦時中も1,000超を維持。煩悩（赤）は1940年に単独スパイク。</p>
     </div>
 
@@ -344,7 +344,7 @@ footer a { color: #aaa; }
 
     <div class="chart-wrap">
       <div class="chart-title">Fig. 3 — 煩悩 vs ストレス クロスオーバー（1945–2000）</div>
-      <canvas id="crossChart" height="280"></canvas>
+      <div style="position:relative;height:260px"><canvas id="crossChart"></canvas></div>
       <p class="chart-caption">クロスオーバーポイント：1967年。ストレスは1999年に57,017件のピークを記録する一方、煩悩は1980年代以降3,000〜4,000件で安定。</p>
     </div>
 
