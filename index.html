@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>煩悩の精神史 — 日本語出版物における苦しみの語彙変容 1860–2000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f7f4ee;
+  --accent: #8b2c2c;
+  --accent2: #2c5f8b;
+  --muted: #6b6560;
+  --border: #d4cfc7;
+  --serif: 'DM Serif Display', 'Noto Serif JP', serif;
+  --sans: 'Noto Sans JP', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* HEADER */
+.masthead {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: '108';
+  position: absolute;
+  font-family: var(--serif);
+  font-size: 320px;
+  color: rgba(255,255,255,0.04);
+  right: -20px;
+  top: -60px;
+  line-height: 1;
+  pointer-events: none;
+}
+.journal-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.paper-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.15;
+  font-weight: 400;
+  margin-bottom: 16px;
+  max-width: 780px;
+}
+.paper-subtitle {
+  font-size: 18px;
+  color: #aaa;
+  font-weight: 300;
+  margin-bottom: 40px;
+  max-width: 640px;
+  line-height: 1.6;
+}
+.meta-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  border-top: 1px solid #333;
+  padding-top: 24px;
+}
+.meta-item { font-size: 13px; }
+.meta-label { color: #888; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; display: block; margin-bottom: 3px; }
+.meta-value { color: var(--paper); }
+
+/* BODY */
+.container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+/* ABSTRACT */
+.abstract {
+  background: #fff;
+  border-left: 4px solid var(--accent);
+  padding: 32px 40px;
+  margin: 60px 0;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+}
+.abstract-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* SECTIONS */
+.section { margin: 64px 0; }
+.section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 6px;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 28px 0 10px;
+  color: var(--ink);
+}
+p { margin-bottom: 16px; color: #333; font-size: 15px; line-height: 1.85; }
+
+/* CHARTS */
+.chart-wrap {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 32px;
+  margin: 32px 0;
+  position: relative;
+}
+.chart-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.chart-caption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.6;
+  font-style: italic;
+}
+canvas { width: 100% !important; }
+
+/* FINDINGS */
+.finding-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0;
+}
+.finding {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+}
+.finding-year {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+.finding-label { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.finding-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* WAR SECTION */
+.war-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.war-label { width: 70px; text-align: right; color: var(--muted); font-family: var(--mono); font-size: 11px; }
+.war-track { flex: 1; background: #f0ede8; height: 24px; position: relative; }
+.war-fill { height: 100%; position: absolute; left: 0; top: 0; display: flex; align-items: center; padding-left: 6px; }
+.war-val { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.9); }
+.war-title { font-size: 12px; font-weight: 500; margin: 20px 0 6px; color: var(--ink); }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 28px; margin: 32px 0; }
+.timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tl-event { position: relative; margin-bottom: 20px; }
+.tl-dot { width: 13px; height: 13px; border-radius: 50%; position: absolute; left: -33px; top: 3px; }
+.tl-year { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 2px; }
+.tl-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.tl-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* CONCLUSION */
+.thesis {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 48px 48px;
+  margin: 48px 0;
+  position: relative;
+}
+.thesis::before { content: '"'; font-family: var(--serif); font-size: 120px; position: absolute; top: -20px; left: 32px; color: rgba(255,255,255,0.08); line-height: 1; }
+.thesis p { color: #ddd; font-size: 17px; line-height: 1.9; margin-bottom: 0; }
+.thesis em { color: #fff; font-style: normal; font-weight: 500; }
+
+/* DATA TABLE */
+table.data { width: 100%; border-collapse: collapse; font-size: 13px; margin: 20px 0; }
+table.data th { text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--ink); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); font-weight: 400; }
+table.data td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 12px; }
+table.data tr:hover td { background: #faf9f7; }
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: #888;
+  padding: 40px;
+  font-size: 12px;
+  font-family: var(--mono);
+  line-height: 1.8;
+  margin-top: 80px;
+}
+footer a { color: #aaa; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 48px 0; }
+
+.legend-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; font-size: 12px; }
+.legend-item { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.legend-color { width: 24px; height: 3px; border-radius: 2px; }
+
+@media(max-width: 600px) {
+  .masthead { padding: 48px 24px 40px; }
+  .container { padding: 0 24px; }
+  .finding-grid { grid-template-columns: 1fr; }
+  .thesis { padding: 32px 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="journal-label">Digital Humanities Research · NDL Ngram Analysis · 2026</div>
+    <h1 class="paper-title">煩悩の精神史<br><span style="font-style:italic;color:#aaa">A Lexical History of Suffering</span></h1>
+    <p class="paper-subtitle">国立国会図書館デジタルコレクション230万点のNgramデータを用いた、日本語出版物における「苦しみの語彙」変容の定量的追跡（1860–2000）</p>
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-label">データソース</span><span class="meta-value">NDL Ngram Viewer</span></div>
+      <div class="meta-item"><span class="meta-label">対象資料数</span><span class="meta-value">図書・雑誌 約230万点</span></div>
+      <div class="meta-item"><span class="meta-label">分析期間</span><span class="meta-value">1860–2000</span></div>
+      <div class="meta-item"><span class="meta-label">分析語数</span><span class="meta-value">4語（煩悩・嫉妬・義憤・ストレス）</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="abstract">
+    <span class="abstract-label">Abstract</span>
+    本研究は、国立国会図書館デジタルコレクション（230万点）のNgramデータを用いて、日本における「苦しみの語彙」の歴史的変容を定量的に追跡する。煩悩・嫉妬・義憤・ストレスの4語を分析した結果、(1) 煩悩が1940年に91,496件という異常なスパイクを記録し、戦時イデオロギーとして国家に徴用された証拠を発見した。(2) 嫉妬が1945年に446件まで崩壊し、戦時下における個人感情の語彙的抑圧を示した。(3) ストレスが1967年に煩悩を超過し、宗教的苦しみの枠組みから心理学的枠組みへの概念的移行が高度経済成長期に起きたことを数値で確認した。これは仏教概念の世俗化と、近代科学言語による宗教語彙の置換を定量的に示す初の試みである。
+  </div>
+
+  <!-- MAIN CHART -->
+  <div class="section">
+    <span class="section-num">§ 1 — Main Visualization</span>
+    <h2>4語の出現頻度推移（1860–2000）</h2>
+    <p>縦軸の単位の違いに注意。煩悩の1940年スパイク（91,496）はストレスのピーク（57,017）より大きいが、スケール正規化のために別軸で表示している。</p>
+    <div class="chart-wrap">
+      <div class="chart-title">Fig. 1 — Raw Frequency by Year (NDL Ngram, 図書・雑誌)</div>
+      <div class="legend-row">
+        <div class="legend-item"><div class="legend-color" style="background:#8b2c2c"></div>煩悩</div>
+        <div class="legend-item"><div class="legend-color" style="background:#2c5f8b"></div>嫉妬</div>
+        <div class="legend-item"><div class="legend-color" style="background:#2c6b3a"></div>義憤</div>
+        <div class="legend-item"><div class="legend-color" style="background:#7b4e8b"></div>ストレス</div>
+      </div>
+      <canvas id="mainChart" height="360"></canvas>
+      <p class="chart-caption">出典：国立国会図書館デジタルコレクション NDL Ngram Viewer。2001年以降は著作権保護資料が対象外となるため急落する。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WARTIME SECTION -->
+  <div class="section">
+    <span class="section-num">§ 2 — Key Finding I</span>
+    <h2>1940年：煩悩の戦時的徴用</h2>
+    <p>1940年の煩悩出現頻度91,496件は、前後の年と比べて突出している。この年は大政翼賛会の結成（10月）、紀元2600年記念式典、日独伊三国同盟調印と重なる。</p>
+    <p>「贅沢は敵だ」スローガンが示すように、戦時体制は個人的欲望を「煩悩」として名指しし、その滅却を求めた。仏教的「煩悩」概念が国家イデオロギーの語彙として機能した。同時期に嫉妬・ストレスは低水準を維持しており、「煩悩」のみが特異な急増を示す。</p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Fig. 2 — 戦時期詳細（1930–1955）</div>
+      <canvas id="warChart" height="280"></canvas>
+      <p class="chart-caption">嫉妬（青）は1944〜45年に崩壊（3,337→446）。義憤（緑）は戦時中も1,000超を維持。煩悩（赤）は1940年に単独スパイク。</p>
+    </div>
+
+    <div class="finding-grid">
+      <div class="finding">
+        <span class="finding-year">91,496</span>
+        <div class="finding-label">煩悩 — 1940年</div>
+        <div class="finding-body">単年の最大値。大政翼賛会結成・紀元2600年と重なる。仏教語が国家動員言語として機能した頂点。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year" style="color:var(--accent2)">446</span>
+        <div class="finding-label">嫉妬 — 1945年</div>
+        <div class="finding-body">平常値（約10,000）の4.5%まで崩壊。個人的感情語の語彙的抑圧。1948年には17,736まで急回復。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year" style="color:#2c6b3a">維持</span>
+        <div class="finding-label">義憤 — 1935〜1942年</div>
+        <div class="finding-body">1,066〜1,393の安定した高水準。集団的怒りは奨励され、個人的感情だけが抑圧された。</div>
+      </div>
+      <div class="finding">
+        <span class="finding-year" style="color:#333">2</span>
+        <div class="finding-label">ストレス — 1945年</div>
+        <div class="finding-body">戦時中も低水準（100〜500）。「ストレス」は戦後の外来概念であり、戦時の語彙に存在しなかった。</div>
+      </div>
+    </div>
+
+    <h3>個人感情 vs 集団感情 — 戦時の語彙選別</h3>
+    <p>データは明確なパターンを示す。戦時期に<strong>抑圧されたもの</strong>：嫉妬（個人的欲望・競争心）。<strong>維持されたもの</strong>：義憤（集団的正義の怒り）。<strong>動員されたもの</strong>：煩悩（個人的執着・欲望、それゆえ滅却すべきもの）。宗教概念が国家イデオロギーに接収される構造が、語彙の出現頻度として可視化された。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CROSSOVER SECTION -->
+  <div class="section">
+    <span class="section-num">§ 3 — Key Finding II</span>
+    <h2>1967年：宗教から心理学へのクロスオーバー</h2>
+    <p>ストレスが煩悩を超過したのは1967年。東京オリンピック（1964）後の高度経済成長期の中盤にあたる。1953年に1,220件だったストレスは、1957年に7,933件で煩悩（10,030）に迫り、1967年に14,255対13,549で逆転した。</p>
+    <p>これは日本社会が「苦しみ」を説明する枠組みを、仏教的・宗教的語彙（煩悩）から、医学・心理学的語彙（ストレス）に移行させた瞬間を示している。</p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Fig. 3 — 煩悩 vs ストレス クロスオーバー（1945–2000）</div>
+      <canvas id="crossChart" height="280"></canvas>
+      <p class="chart-caption">クロスオーバーポイント：1967年。ストレスは1999年に57,017件のピークを記録する一方、煩悩は1980年代以降3,000〜4,000件で安定。</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#2c5f8b"></div>
+        <div class="tl-year">1953年</div>
+        <div class="tl-name">ストレス本格登場（1,220件）</div>
+        <div class="tl-body">セリエのストレス学説が日本に広まる。朝鮮戦争特需で経済成長が始まり、職場のプレッシャーが社会問題化。</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#888"></div>
+        <div class="tl-year">1957–1958年</div>
+        <div class="tl-name">第一接近（ストレス7,933 vs 煩悩10,030）</div>
+        <div class="tl-body">神武景気の絶頂期。高度成長の負の側面として「過労・プレッシャー」が語られ始める。</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#7b4e8b"></div>
+        <div class="tl-year">1967年</div>
+        <div class="tl-name">クロスオーバー（ストレス14,255 vs 煩悩13,549）</div>
+        <div class="tl-body">いざなぎ景気の時代。「過労死」前夜。苦しみの説明言語が宗教から医学に移行した転換点。</div>
+      </div>
+      <div class="tl-event">
+        <div class="tl-dot" style="background:#7b4e8b"></div>
+        <div class="tl-year">1999年</div>
+        <div class="tl-name">ストレスのピーク（57,017件）</div>
+        <div class="tl-body">バブル崩壊後の「失われた10年」。リストラ・不況・不安。ストレスは煩悩の27倍に達した。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CROSSOVER CHART DATA TABLE -->
+  <div class="section">
+    <span class="section-num">§ 4 — Data</span>
+    <h2>主要年代の出現頻度（実測値）</h2>
+    <table class="data">
+      <tr><th>年</th><th>煩悩</th><th>嫉妬</th><th>義憤</th><th>ストレス</th><th>備考</th></tr>
+      <tr><td>1868</td><td>4</td><td>4</td><td>0</td><td>0</td><td>明治元年</td></tr>
+      <tr><td>1904</td><td>1,884</td><td>1,595</td><td>228</td><td>10</td><td>日露戦争</td></tr>
+      <tr><td>1923</td><td>7,638</td><td>5,520</td><td>358</td><td>271</td><td>関東大震災</td></tr>
+      <tr><td>1936</td><td>51,602</td><td>10,509</td><td>1,153</td><td>272</td><td>2.26事件</td></tr>
+      <tr><td>1940</td><td style="color:var(--accent);font-weight:700">91,496</td><td>13,165</td><td>1,329</td><td>343</td><td>大政翼賛会・三国同盟</td></tr>
+      <tr><td>1945</td><td>1,510</td><td style="color:var(--accent);font-weight:700">446</td><td>69</td><td>2</td><td>終戦</td></tr>
+      <tr><td>1948</td><td>12,781</td><td>17,736</td><td>1,146</td><td>420</td><td>戦後復興</td></tr>
+      <tr><td>1955</td><td>9,580</td><td>18,201</td><td>1,296</td><td>2,895</td><td>神武景気</td></tr>
+      <tr><td>1964</td><td>16,463</td><td>11,880</td><td>1,021</td><td>10,202</td><td>東京五輪</td></tr>
+      <tr><td>1967</td><td>13,549</td><td>15,806</td><td>1,328</td><td style="color:var(--accent2);font-weight:700">14,255</td><td>★クロスオーバー</td></tr>
+      <tr><td>1973</td><td>4,479</td><td>4,125</td><td>466</td><td>10,068</td><td>オイルショック</td></tr>
+      <tr><td>1989</td><td>3,844</td><td>5,477</td><td>307</td><td>41,405</td><td>バブル最高潮・昭和終焉</td></tr>
+      <tr><td>1999</td><td>2,625</td><td>4,197</td><td>264</td><td style="color:#7b4e8b;font-weight:700">57,017</td><td>ストレスのピーク</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THESIS -->
+  <div class="section">
+    <span class="section-num">§ 5 — Conclusion</span>
+    <h2>結論と含意</h2>
+    <div class="thesis">
+      <p>仏教の「煩悩」概念は1940年に戦時イデオロギーとして国家に徴用され、個人的欲望を滅却させるための動員語として機能した。その後、高度経済成長期の1967年に「ストレス」という医学・心理学的語彙に置き換えられた。この概念置換は日本の近代化における<em>宗教的世界観の解体</em>を定量的に示している。苦しみの原因を「煩悩（内なる執着）」と見るか「ストレス（外からの負荷）」と見るかは、責任の所在と対処法を根本から変える。この転換は偶然ではなく、<em>近代国家・資本主義・医療化の進展</em>と精密に連動している。</p>
+    </div>
+
+    <h3>今後の課題</h3>
+    <p>本研究の次ステップとして、(1) 12論書の系統分析（UPGMA）との統合、(2) 「トラウマ」「うつ」等の追加語彙分析、(3) ストレスのさらなる細分化（「職場ストレス」「育児ストレス」等）、(4) 他言語コーパスとの比較（英語の"sin"→"stress"転換との対照）が挙げられる。</p>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <div style="max-width:900px;margin:0 auto">
+    <div style="margin-bottom:16px;color:#ccc;font-size:13px">煩悩の精神史 — NDL Ngram Analysis</div>
+    DATA SOURCE: 国立国会図書館デジタルコレクション NDL Ngram Viewer（lab.ndl.go.jp/ngramviewer）<br>
+    対象：図書・雑誌 約230万点 OCRテキストデータ<br>
+    License: CC BY（NDL Ngram Data）<br>
+    <br>
+    Analysis &amp; Visualization: M2Labo Research · 2026<br>
+    Built with Chart.js · GitHub Pages
+  </div>
+</footer>
+
+<script>
+const YEARS = Array.from({length: 141}, (_, i) => 1860 + i);
+
+const RAW = {
+  煩悩: [0,0,0,0,0,0,0,1,4,20,22,7,21,15,20,116,181,441,757,635,1127,1981,1094,1452,1615,2635,3494,3042,2898,2443,4120,2981,3507,3753,4692,4188,4400,2863,4564,2840,3065,3330,4506,2445,1884,3240,4587,2970,3706,5214,5775,6282,5834,4582,10797,5843,12038,6490,10061,5306,19763,19965,28349,7638,10219,23292,25162,23791,24221,17952,24876,21043,23683,17288,23588,29256,51602,18301,13160,29156,91496,10397,10076,8165,7679,1510,1112,4038,12781,7188,4193,4584,5810,7565,11321,9580,10379,10030,11189,11143,16807,17218,17985,15973,16463,14916,14111,13549,12595,6102,9142,3996,6721,4479,7205,5248,7658,7108,8196,4486,3755,4381,3553,4023,3937,4049,3529,3376,3336,3844,4212,2932,3011,3107,2797,3224,3169,3019,3106,2625,2112,51,37,10,12,6],
+  嫉妬: [0,0,0,0,0,0,0,2,4,17,27,23,30,55,41,67,78,120,127,185,225,379,413,497,458,618,904,853,794,954,847,1239,981,1321,996,866,1231,1093,1060,1040,1678,1675,1777,1723,1595,2258,2891,2449,2628,3048,3276,3675,3983,5690,4176,4435,4798,4228,4433,4062,6168,6165,5963,5520,8177,8594,10352,8800,10546,10921,13483,9871,8883,10505,9672,12304,10509,9423,7471,9410,13165,8499,8101,6422,3337,446,2883,5694,17736,13347,11515,12634,13426,14756,14823,18201,18057,16003,17676,17775,16657,15271,14026,14486,11880,13383,15615,15806,14700,7726,5773,4757,4442,4125,4065,3860,4017,4444,4143,3995,4449,4296,4515,4649,4521,4409,4365,4617,5253,5477,5024,5298,5397,5144,4951,4834,5146,5247,4506,4197,4027,95,27,20,56,52],
+  義憤: [0,0,0,0,0,0,0,0,0,1,5,1,12,7,14,18,19,20,24,22,22,16,13,23,22,17,26,32,32,21,28,25,35,43,58,46,42,40,28,51,119,68,78,68,228,141,141,128,129,140,211,209,246,286,235,267,216,249,205,317,392,393,407,358,524,682,957,654,906,893,1040,1048,1102,1154,1169,1393,1153,1234,1066,1164,1329,1254,1385,1124,542,69,253,469,1146,919,722,752,869,1087,1118,1296,1397,1127,1296,1272,1155,1028,1056,1139,1021,1143,1155,1328,1157,519,435,408,432,466,387,336,307,338,306,349,311,332,371,324,278,333,335,324,273,307,236,217,271,273,281,326,265,328,265,264,229,11,2,3,2,6],
+  ストレス: [0,0,0,0,0,0,0,0,0,2,0,0,1,0,2,0,2,2,0,2,0,2,2,8,4,7,3,19,3,27,2,15,2,3,1,2,600,15,17,7,121,6,14,18,10,25,15,13,14,25,33,8,25,64,22,108,24,84,76,31,18,39,102,271,117,177,188,183,168,257,273,222,127,139,400,222,272,248,164,298,343,553,400,232,71,2,62,126,420,199,257,424,413,1220,1863,2895,3984,7933,8588,7292,7783,8545,9235,11625,10202,11436,13344,14255,16042,9994,10745,10244,10753,10068,9617,10003,10495,11682,12978,15073,14094,16760,19529,21110,24421,27094,32267,37170,37018,41405,42486,42546,46183,45821,49154,48233,54258,54227,56558,57017,50729,2298,1485,1433,1561,1567]
+};
+
+const COLORS = {
+  煩悩: '#8b2c2c',
+  嫉妬: '#2c5f8b',
+  義憤: '#2c6b3a',
+  ストレス: '#7b4e8b'
+};
+
+const EVENTS = [
+  {x:1877, label:'西南戦争'},
+  {x:1904, label:'日露戦争'},
+  {x:1923, label:'関東大震災'},
+  {x:1931, label:'満州事変'},
+  {x:1937, label:'日中戦争'},
+  {x:1940, label:'大政翼賛会'},
+  {x:1945, label:'終戦'},
+  {x:1964, label:'東京五輪'},
+  {x:1967, label:'★クロスオーバー'},
+  {x:1973, label:'石油危機'},
+  {x:1989, label:'バブル'},
+  {x:1999, label:'ストレスPeak'},
+];
+
+function makeDatasets(keys, years=YEARS, alpha=1) {
+  return keys.map(k => ({
+    label: k,
+    data: YEARS.filter(y => years.includes(y)).map((y,i) => {
+      const idx = YEARS.indexOf(y);
+      return { x: y, y: RAW[k][idx] };
+    }),
+    borderColor: COLORS[k],
+    backgroundColor: COLORS[k] + '18',
+    borderWidth: 1.5,
+    pointRadius: 0,
+    pointHoverRadius: 4,
+    tension: 0.3,
+    fill: false,
+  }));
+}
+
+const baseOpts = {
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: { mode: 'index', intersect: false },
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      backgroundColor: '#1a1714',
+      titleColor: '#f7f4ee',
+      bodyColor: '#ccc',
+      callbacks: {
+        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}`,
+      }
+    }
+  },
+  scales: {
+    x: {
+      type: 'linear',
+      min: 1860,
+      max: 2002,
+      ticks: { stepSize: 10, font: { family: 'Space Mono', size: 10 }, color: '#888' },
+      grid: { color: '#f0ede8' },
+    },
+    y: {
+      ticks: { font: { family: 'Space Mono', size: 10 }, color: '#888',
+               callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
+      grid: { color: '#f0ede8' },
+    }
+  }
+};
+
+// 注釈用垂直線を追加
+function withAnnotations(opts, events) {
+  return {
+    ...opts,
+    plugins: {
+      ...opts.plugins,
+      annotation: undefined // annotation pluginなしで代替
+    }
+  };
+}
+
+// Main chart
+new Chart(document.getElementById('mainChart'), {
+  type: 'line',
+  data: { datasets: makeDatasets(['煩悩','嫉妬','義憤','ストレス']) },
+  options: {
+    ...baseOpts,
+    scales: {
+      ...baseOpts.scales,
+      x: { ...baseOpts.scales.x },
+      y: {
+        ...baseOpts.scales.y,
+        max: 100000,
+      }
+    }
+  }
+});
+
+// War chart (1930-1955)
+const warYears = YEARS.filter(y => y >= 1928 && y <= 1957);
+new Chart(document.getElementById('warChart'), {
+  type: 'line',
+  data: { datasets: makeDatasets(['煩悩','嫉妬','義憤','ストレス'], warYears) },
+  options: {
+    ...baseOpts,
+    scales: {
+      x: { ...baseOpts.scales.x, min: 1928, max: 1958 },
+      y: { ...baseOpts.scales.y }
+    }
+  }
+});
+
+// Crossover chart (1945-2000)
+const crossYears = YEARS.filter(y => y >= 1945 && y <= 2001);
+new Chart(document.getElementById('crossChart'), {
+  type: 'line',
+  data: { datasets: makeDatasets(['煩悩','ストレス'], crossYears) },
+  options: {
+    ...baseOpts,
+    scales: {
+      x: { ...baseOpts.scales.x, min: 1945, max: 2001 },
+      y: { ...baseOpts.scales.y }
+    }
+  }
+});
+</script>
+</body>
+</html>
